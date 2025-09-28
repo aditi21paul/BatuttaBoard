@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Batutta Board</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #B6FFD7; /* light green background */
+      color: #22577A; /* dark blue text */
+    }
+    header {
+      background: #22577A;
+      color: #B6FFD7;
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+    }
+    .menu {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: none;
+    }
+    .menu select {
+      padding: 0.4rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      background: #38A3A5;
+      color: #B6FFD7;
+    }
+    .container {
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #57CC99; /* medium green */
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(34, 87, 122, 0.3);
+      color: #22577A;
+    }
+    input, button, textarea, select {
+      width: 100%;
+      padding: 0.6rem;
+      margin: 0.5rem 0;
+      border: 1px solid #38A3A5;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #B6FFD7;
+      color: #22577A;
+    }
+    button {
+      background: #38A3A5;
+      color: #B6FFD7;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #57CC99;
+      color: #22577A;
+    }
+    .dashboard {
+      display: none;
+      padding: 1rem;
+    }
+    .travel-cards {
+      margin-top: 1rem;
+    }
+    .card {
+      background: #38A3A5;
+      color: #B6FFD7;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 0.5rem 0;
+      position: relative;
+    }
+    .card button {
+      width: auto;
+      padding: 0.3rem 0.6rem;
+      margin-right: 0.3rem;
+      font-size: 0.9rem;
+      background: #22577A;
+      color: #B6FFD7;
+    }
+    .card button:hover {
+      background: #57CC99;
+      color: #22577A;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(34, 87, 122, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: #57CC99;
+      padding: 1.5rem;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      color: #22577A;
+    }
+    .modal-content h2 {
+      margin-top: 0;
+      color: #22577A;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #22577A;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="menu" id="menuContainer">
+      <select id="menuSelect">
+        <option value="">☰ Menu</option>
+        <option value="personal">Personal Dashboard</option>
+        <option value="logout">Logout</option>
+      </select>
+    </div>
+    <h1>Batutta Board</h1>
+  </header>
+
+  <!-- Login Page -->
+  <div id="loginPage" class="container">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <button id="loginBtn">Login</button>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard" class="dashboard">
+    <div class="container">
+      <h2>Dashboard</h2>
+      <button id="openCreateCardBtn">Create Travel Card</button>
+      <h3>Filter Travel Cards</h3>
+      <select id="filterSource">
+        <option value="">Filter by Source</option>
+      </select>
+      <select id="filterDestination">
+        <option value="">Filter by Destination</option>
+      </select>
+      <div class="travel-cards" id="travelCards"></div>
+    </div>
+  </div>
+
+  <!-- Modal for creating travel card -->
+  <div class="modal" id="createCardModal">
+    <div class="modal-content">
+      <span id="closeModalBtn" class="close-btn">✖</span>
+      <h2>Create travel card</h2>
+      <input type="text" id="source" placeholder="Source" required />
+      <input type="text" id="destination" placeholder="Destination" required />
+      <input type="date" id="date" required />
+      <input type="time" id="time" required />
+      <input type="text" id="contact" placeholder="Contact information" required />
+      <textarea id="notes" placeholder="Other preferences / notes"></textarea>
+      <button id="saveCardBtn">Save</button>
+    </div>
+  </div>
+
+  <script>
+    const loginBtn = document.getElementById("loginBtn");
+    const loginPage = document.getElementById("loginPage");
+    const dashboard = document.getElementById("dashboard");
+
+    const modal = document.getElementById("createCardModal");
+    const openBtn = document.getElementById("openCreateCardBtn");
+    const closeBtn = document.getElementById("closeModalBtn");
+    const saveBtn = document.getElementById("saveCardBtn");
+    const cardsContainer = document.getElementById("travelCards");
+
+    const filterSource = document.getElementById("filterSource");
+    const filterDestination = document.getElementById("filterDestination");
+
+    const menuSelect = document.getElementById("menuSelect");
+    const menuContainer = document.getElementById("menuContainer");
+
+    let currentUser = "";
+    let cardsData = [];
+
+    loginBtn.addEventListener("click", () => {
+      const email = document.getElementById("email").value;
+      currentUser = email.split("@")[0];
+      loginPage.style.display = "none";
+      dashboard.style.display = "block";
+      menuContainer.style.display = "block";
+    });
+
+    menuSelect.addEventListener("change", (e) => {
+      if (e.target.value === "logout") {
+        dashboard.style.display = "none";
+        loginPage.style.display = "block";
+        menuContainer.style.display = "none";
+      } else if (e.target.value === "personal") {
+        alert("Personal Dashboard placeholder");
+      }
+      e.target.value = "";
+    });
+
+    openBtn.addEventListener("click", () => {
+      modal.classList.add("active");
+    });
+    closeBtn.addEventListener("click", () => {
+      modal.classList.remove("active");
+    });
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.remove("active");
+      }
+    });
+
+    function renderCards() {
+      cardsContainer.innerHTML = "";
+      const srcFilter = filterSource.value;
+      const dstFilter = filterDestination.value;
+
+      cardsData.forEach((card, index) => {
+        if ((srcFilter && card.src !== srcFilter) || (dstFilter && card.dst !== dstFilter)) return;
+
+        const cardEl = document.createElement("div");
+        cardEl.className = "card";
+        cardEl.innerHTML = `<strong>${card.src}</strong> → <strong>${card.dst}</strong><br>${card.date} at ${card.time}<br>👤 ${card.user}<br>📞 ${card.contact}<br><em>${card.notes}</em>`;
+
+        if (card.user === currentUser) {
+          const editBtn = document.createElement("button");
+          editBtn.textContent = "Edit";
+          editBtn.onclick = () => editCard(index);
+
+          const deleteBtn = document.createElement("button");
+          deleteBtn.textContent = "Delete";
+          deleteBtn.onclick = () => deleteCard(index);
+
+          cardEl.appendChild(document.createElement("br"));
+          cardEl.appendChild(editBtn);
+          cardEl.appendChild(deleteBtn);
+        }
+
+        cardsContainer.appendChild(cardEl);
+      });
+    }
+
+    function editCard(index) {
+      const card = cardsData[index];
+      document.getElementById("source").value = card.src;
+      document.getElementById("destination").value = card.dst;
+      document.getElementById("date").value = card.date;
+      document.getElementById("time").value = card.time;
+      document.getElementById("contact").value = card.contact;
+      document.getElementById("notes").value = card.notes;
+
+      modal.classList.add("active");
+
+      saveBtn.onclick = () => {
+        cardsData[index] = {
+          src: document.getElementById("source").value,
+          dst: document.getElementById("destination").value,
+          date: document.getElementById("date").value,
+          time: document.getElementById("time").value,
+          contact: document.getElementById("contact").value,
+          notes: document.getElementById("notes").value,
+          user: currentUser
+        };
+        renderCards();
+        modal.classList.remove("active");
+        resetForm();
+        saveBtn.onclick = defaultSaveHandler;
+      };
+    }
+
+    function deleteCard(index) {
+      cardsData.splice(index, 1);
+      renderCards();
+    }
+
+    function resetForm() {
+      document.getElementById("source").value = "";
+      document.getElementById("destination").value = "";
+      document.getElementById("date").value = "";
+      document.getElementById("time").value = "";
+      document.getElementById("contact").value = "";
+      document.getElementById("notes").value = "";
+    }
+
+    function defaultSaveHandler() {
+      const src = document.getElementById("source").value;
+      const dst = document.getElementById("destination").value;
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+      const contact = document.getElementById("contact").value;
+      const notes = document.getElementById("notes").value;
+
+      if (!src || !dst || !date || !time || !contact) return;
+
+      const cardObj = { src, dst, date, time, contact, notes, user: currentUser };
+      cardsData.push(cardObj);
+
+      if (![...filterSource.options].some(opt => opt.value === src)) {
+        const opt = document.createElement("option");
+        opt.value = src; opt.textContent = src;
+        filterSource.appendChild(opt);
+      }
+      if (![...filterDestination.options].some(opt => opt.value === dst)) {
+        const opt = document.createElement("option");
+        opt.value = dst; opt.textContent = dst;
+        filterDestination.appendChild(opt);
+      }
+
+      renderCards();
+      modal.classList.remove("active");
+      resetForm();
+    }
+
+    saveBtn.onclick = defaultSaveHandler;
+
+    filterSource.addEventListener("change", renderCards);
+    filterDestination.addEventListener("change", renderCards);
+  </script>
+</body>
+</html>
