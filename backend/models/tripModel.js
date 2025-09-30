@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 // Define the Trip schema
 const tripSchema = new Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "Travellers",
+    },
     source: {
       type: String,
       required: true,
@@ -23,9 +28,9 @@ const tripSchema = new Schema(
       type: String,
       required: true,
     },
-    notes:{
-        type: String,
-        required: false,
+    notes: {
+      type: String,
+      required: false,
     }
   },
   { timestamps: true }

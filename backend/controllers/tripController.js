@@ -1,13 +1,11 @@
 const Trip = require("../models/tripModel");
 const mongoose = require("mongoose");
 
-// get all trips
 const getTrips = async (req, res) => {
   const trips = await Trip.find({}).sort({ createdAt: -1 });
   res.status(200).json(trips);
 };
 
-// get a single trip
 const getTrip = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -20,49 +18,58 @@ const getTrip = async (req, res) => {
   res.status(200).json(trip);
 };
 
-// create new trip cards
 const createTripCard = async (req, res) => {
-   const {source, destination, date, time, contactNumber, notes} = req.body;
+  const { source, destination, date, time, contactNumber, notes } = req.body;
+
+  if (!source || !destination || !date || !time || !contactNumber) {
+    return res.status(400).json({ error: "Please fill in all required fields." });
+  }
+
   try {
-    const tripCard = await Trip.create({source, destination, date, time, contactNumber, notes});
-    res.status(200).json(tripCard);
+    const user_id = req.user._id;
+    const tripCard = await Trip.create({ user: user_id, source, destination, date, time, contactNumber, notes });
+    res.status(201).json(tripCard);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-// edit/update trip cards
 const updateTripCard = async (req, res) => {
   const { id } = req.params;
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "No such trip" });
   }
 
-  const tripCard = await Trip.findByIdAndUpdate(
-    id,
-    { ...req.body },
-    { new: true }
-  );
-
-  if (!tripCard) {
-    return res.status(404).json({ error: "No such trip" });
+  const trip = await Trip.findById(id);
+  if (!trip) {
+    return res.status(404).json({ error: "No such trip card" });
   }
 
-  res.status(200).json(tripCard);
+  if (trip.user.toString() !== req.user._id.toString()) {
+    return res.status(401).json({ error: "User not authorized" });
+  }
+
+  const updatedTripCard = await Trip.findByIdAndUpdate(id, { ...req.body }, { new: true });
+  res.status(200).json(updatedTripCard);
 };
 
-// delete trip cards
 const deleteTripCard = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "No such trip" });
   }
-  const tripCard = await Trip.findByIdAndDelete(id);
-  if (!tripCard) {
-    return res.status(404).json({ error: "No such trip" });
+
+  const trip = await Trip.findById(id);
+  if (!trip) {
+    return res.status(404).json({ error: "No such trip card" });
   }
-  res.status(200).json(tripCard);
+
+  if (trip.user.toString() !== req.user._id.toString()) {
+    return res.status(401).json({ error: "User not authorized" });
+  }
+
+  await trip.deleteOne();
+  res.status(200).json({ message: "Trip card deleted successfully." });
 };
 
 module.exports = {

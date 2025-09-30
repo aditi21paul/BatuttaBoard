@@ -7,7 +7,12 @@ const {
     deleteTripCard,
 } = require("../controllers/tripController");
 
+const requireAuth = require('../middleware/requireAuth');
+
 const router = express.Router();
+
+// It ensures a user must be logged in to access any of these endpoints.
+router.use(requireAuth);
 
 // GET all Trips
 router.get("/", getTrips);
@@ -18,12 +23,10 @@ router.get("/:id", getTrip);
 // POST a new Trip Card
 router.post("/", createTripCard);
 
-// Edit a Trip Card
-// FIX: Changed from router.patch("/") to router.patch("/:id")
-router.patch("/:id", updateTripCard); 
+// Edit a Trip Card by ID
+router.patch("/:id", updateTripCard);
 
 // DELETE a Trip Card by ID
 router.delete("/:id", deleteTripCard);
 
-// Export the router
 module.exports = router;

@@ -2,13 +2,15 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const tripRoutes = require("./routes/trips");
-// const userRoutes = require("./routes/user");
+const userRoutes = require("./routes/user");
 const cors = require("cors");
+// const passport = require("passport");
 
-// express app
+// --- Configurations ---
+//require("./config/passport-setup"); // <-- ADD: Run the passport configuration
+
 const app = express();
 
-// middleware
 app.use(
   cors({
     origin: process.env.FRONTEND_URL || "http://localhost:3000",
@@ -17,29 +19,30 @@ app.use(
 );
 app.use(express.json());
 
+// --- ADD: Passport Middleware ---
+// This must be configured for Google OAuth to work.
+//app.use(passport.initialize());
+
 app.get("/", (req, res) => {
-  res.send("API is running !!!");
+  res.send("Batutta Board API is running...");
 });
 
-// log requests
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
 
-// routes
+app.use("/api/user", userRoutes);
 app.use("/api/trips", tripRoutes);
-// app.use("/api/user", userRoutes);
 
-// connect to db
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    // listen for requests once connected to db
     app.listen(process.env.PORT || 4000, () => {
       console.log(
         "Connected to DB and server is listening on port",
-        process.env.PORT
+        process.env.PORT || 4000
       );
     });
   })
