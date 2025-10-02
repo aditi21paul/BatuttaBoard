@@ -2,8 +2,22 @@ const Trip = require("../models/tripModel");
 const mongoose = require("mongoose");
 
 const getTrips = async (req, res) => {
-  const trips = await Trip.find({}).sort({ createdAt: -1 });
+  const user_id = req.user._id;
+  const trips = await Trip.find({ user: { $ne: user_id } }).sort({
+    createdAt: -1,
+  });
   res.status(200).json(trips);
+};
+
+const getMyTrips = async (req, res) => {
+  const user_id = req.user._id;
+
+  try {
+    const myTrips = await Trip.find({ user: user_id }).sort({ createdAt: -1 });
+    res.status(200).json(myTrips);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 
 const getTrip = async (req, res) => {
@@ -75,6 +89,7 @@ const deleteTripCard = async (req, res) => {
 module.exports = {
   getTrips,
   getTrip,
+  getMyTrips,
   createTripCard,
   updateTripCard,
   deleteTripCard,

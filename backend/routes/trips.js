@@ -2,6 +2,7 @@ const express = require("express");
 const {
     getTrips,
     getTrip,
+    getMyTrips,
     createTripCard,
     updateTripCard,
     deleteTripCard,
@@ -19,6 +20,9 @@ router.get("/", getTrips);
 
 // GET a single Trip by ID
 router.get("/:id", getTrip);
+
+// GET Trips made by the user
+router.get("/user/me", getMyTrips);
 
 // POST a new Trip Card
 router.post("/", createTripCard);
