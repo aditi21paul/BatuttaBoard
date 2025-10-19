@@ -7,15 +7,51 @@ Create, share, and discover travel plans effortlessly — all in one dashboard.
 
 ## ✨ Features
 
- ![First page]()
+ ![First page](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p1.jpg)
+
 * 🔐 **Login / Sign Up System** – Users can securely register and log in to manage their travel cards.
+![Login page](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p2.jpg)
+
 * 🧭 **Dashboard View** – Displays all existing travel cards with trip details like source, destination, date, and contact info.
+
+ ![Dashboard](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p3.jpg)
+
 * 🪄 **Create Card Modal** – Add new trips with an elegant pop-up modal form.
+
+ ![Create travel card](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p9.jpg)
+
+ 
+ ![View travel card in dashboard](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p10.jpg)
+
 * 🧹 **Filter Cards** – Instantly filter trips by *source* or *destination* for easy discovery.
+
+
+ ![No filter](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p4.jpg)
+
+ 
+ ![Filter source](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p5.jpg)
+
+ 
+ ![Filter destination](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p6.jpg)
+
+Both filters can be applied simultaneously as well.
+
 * 🧑‍💻 **Edit / Delete** – Modify or remove your own travel cards anytime.
+
+When we click on edit,
+
+ ![Edit card](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p7.jpg)
+
 * 🎨 **Clean UI** – Styled with a calm, adventure-inspired color palette:
   `#22577A`, `#38A3A5`, `#57CC99`, `#B6FFD7`
+
+
 * 🚪 **Logout Functionality** – Securely sign out once done exploring.
+
+
+ ![Menu](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p11.jpg)
+
+From the menu we can choose logout to logout, it redirects to the sign in page.
 
 ---
 
