@@ -7,32 +7,32 @@ Create, share, and discover travel plans effortlessly — all in one dashboard.
 
 ## ✨ Features
 
- ![First page](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/tree/main/images/p1.jpg)
+ ![First page](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p1.jpg?raw=true)
 
 * 🔐 **Login / Sign Up System** – Users can securely register and log in to manage their travel cards.
-![Login page](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/tree/main/images/p2.jpg)
+![Login page](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p2.jpg?raw=true)
 
 * 🧭 **Dashboard View** – Displays all existing travel cards with trip details like source, destination, date, and contact info.
 
- ![Dashboard](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/tree/main/images/p3.jpg)
+ ![Dashboard](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p3.jpg?raw=true)
 
 * 🪄 **Create Card Modal** – Add new trips with an elegant pop-up modal form.
 
- ![Create travel card](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/tree/main/images/p9.jpg)
+ ![Create travel card](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p9.jpg?raw=true)
 
  
- ![View travel card in dashboard](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/tree/main/images/p10.jpg)
+ ![View travel card in dashboard](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p10.jpg?raw=true)
 
 * 🧹 **Filter Cards** – Instantly filter trips by *source* or *destination* for easy discovery.
 
 
- ![No filter](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/tree/main/images/p4.jpg)
+ ![No filter](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p4.jpg?raw=true)
 
  
- ![Filter source](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/tree/main/images/p5.jpg)
+ ![Filter source](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p5.jpg?raw=true)
 
  
- ![Filter destination](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/tree/main/images/p6.jpg)
+ ![Filter destination](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p6.jpg?raw=true)
 
 Both filters can be applied simultaneously as well.
 
@@ -40,7 +40,7 @@ Both filters can be applied simultaneously as well.
 
 When we click on edit,
 
- ![Edit card](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/tree/main/images/p7.jpg)
+ ![Edit card](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p7.jpg?raw=true)
 
 * 🎨 **Clean UI** – Styled with a calm, adventure-inspired color palette:
   `#22577A`, `#38A3A5`, `#57CC99`, `#B6FFD7`
@@ -49,7 +49,7 @@ When we click on edit,
 * 🚪 **Logout Functionality** – Securely sign out once done exploring.
 
 
- ![Menu](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/tree/main/images/p11.jpg)
+ ![Menu](https://github.com/aditi21paul/BatuttaBoard/tree/main/images/p11.jpg?raw=true)
 
 From the menu we can choose logout to logout, it redirects to the sign in page.
 
@@ -58,7 +58,7 @@ From the menu we can choose logout to logout, it redirects to the sign in page.
 ## 🧰 Tech Stack
 
 * **Frontend:** ReactJS
-* **Styling:** CSS
+* **Styling:** CSS3
 * **State Management:** React Hooks (`useState`, `useEffect`)
 * **Icons & UI Enhancements:** FontAwesome / React Icons
 
