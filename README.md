@@ -4,7 +4,7 @@
 Create, share, and discover travel plans effortlessly — all in one dashboard.
 
 ---
-//will be valid if we make repo public
+
 ## ✨ Features
 
 ![First page](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/054c3c0006f5553a9cd7b62f29741b7101f3766a/images/p1.jpg)
