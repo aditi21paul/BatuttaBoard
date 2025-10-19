@@ -13,6 +13,10 @@ Create, share, and discover travel plans effortlessly — all in one dashboard.
 
 ![Login page](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/054c3c0006f5553a9cd7b62f29741b7101f3766a/images/p2.jpg)
 
+and if signing up for the first time
+
+![Sign up page](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/054c3c0006f5553a9cd7b62f29741b7101f3766a/images/p12.jpg)
+
 * 🧭 **Dashboard View** – Displays all existing travel cards with trip details like source, destination, date, and contact info.
 
 ![Dashboard](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/054c3c0006f5553a9cd7b62f29741b7101f3766a/images/p3.jpg)
