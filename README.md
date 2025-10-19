@@ -11,11 +11,11 @@ Create, share, and discover travel plans effortlessly — all in one dashboard.
 
 * 🔐 **Login / Sign Up System** – Users can securely register and log in to manage their travel cards.
 
-![Login page](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/054c3c0006f5553a9cd7b62f29741b7101f3766a/images/p2.jpg)
+![Login page](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/604a10931d8b5b0d08b2dcb7a46ff43671097d87/images/p2.jpg)
 
 and if signing up for the first time
 
-![Sign up page](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/054c3c0006f5553a9cd7b62f29741b7101f3766a/images/p12.jpg)
+![Sign up page](https://raw.githubusercontent.com/aditi21paul/BatuttaBoard/604a10931d8b5b0d08b2dcb7a46ff43671097d87/images/p12.jpg)
 
 * 🧭 **Dashboard View** – Displays all existing travel cards with trip details like source, destination, date, and contact info.
 
