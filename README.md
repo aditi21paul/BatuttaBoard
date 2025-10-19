@@ -7,6 +7,7 @@ Create, share, and discover travel plans effortlessly — all in one dashboard.
 
 ## ✨ Features
 
+ ![First page]()
 * 🔐 **Login / Sign Up System** – Users can securely register and log in to manage their travel cards.
 * 🧭 **Dashboard View** – Displays all existing travel cards with trip details like source, destination, date, and contact info.
 * 🪄 **Create Card Modal** – Add new trips with an elegant pop-up modal form.
