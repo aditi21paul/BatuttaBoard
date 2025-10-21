@@ -65,15 +65,23 @@ From the menu we can choose logout to logout, it redirects to the sign in page.
 ## 📁 Folder Structure
 
 ```
+public/
+├── index.html
 src/
 ├── components/
-│   ├── Header.js
-│   ├── LoginPage.js        ← handles both Login & Signup
-│   ├── Dashboard.js
-│   └── CreateCardModal.js
-├── App.js
-├── App.css
-└── index.js
+│   ├── Dashboard.jsx
+│   ├── Header.jsx        
+│   ├── Modal.jsx
+│   └── TravelCard.jsx
+├── pagess/
+│   ├── Home.jsx
+│   ├── Login.jsx     
+│   ├── PersonalDashboard.jsx
+│   └── SignUp.jsx
+├── App.jsx
+├── index.js
+├── style.css
+package.json
 ```
 
 ---
