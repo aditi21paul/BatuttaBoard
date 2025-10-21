@@ -7,6 +7,7 @@ export default function SignUp() {
     email: "",
     password: "",
     dob: "",
+    role: "",
   });
   const navigate = useNavigate();
 
@@ -22,7 +23,8 @@ export default function SignUp() {
       !formData.username ||
       !formData.email ||
       !formData.password ||
-      !formData.dob
+      !formData.dob ||
+      !formData.role
     ) {
       alert("Please fill in all fields");
       return;
@@ -78,6 +80,16 @@ export default function SignUp() {
         value={formData.dob}
         onChange={handleChange}
       />
+       <select
+       name="role"
+       value={formData.role}
+       onChange={handleChange}
+       >
+        <option value="">Select Role</option>
+        <option value="User">User</option>
+        <option value="Admin">Admin</option>
+        </select>
+
       <button onClick={handleSignUp}>Sign Up</button>
       <p style={{ textAlign: "center", marginTop: "1rem" }}>
         Already have an account?{" "}
