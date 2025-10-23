@@ -4,24 +4,17 @@ const mongoose = require("mongoose");
 const tripRoutes = require("./routes/trips");
 const userRoutes = require("./routes/user");
 const cors = require("cors");
-// const passport = require("passport");
-
-// --- Configurations ---
-//require("./config/passport-setup"); // <-- ADD: Run the passport configuration
 
 const app = express();
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
     credentials: true,
   })
 );
 app.use(express.json());
 
-// --- ADD: Passport Middleware ---
-// This must be configured for Google OAuth to work.
-//app.use(passport.initialize());
 
 app.get("/", (req, res) => {
   res.send("Batutta Board API is running...");

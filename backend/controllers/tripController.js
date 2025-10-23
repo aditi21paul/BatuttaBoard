@@ -1,9 +1,38 @@
 const Trip = require("../models/tripModel");
 const mongoose = require("mongoose");
 
+const getAllTrips = async (req, res) => {
+  const role = req.user.role;
+  console.log("User role:", role);
+  if (role != "Admin") {
+    return res.status(403).json({ error: "Access denied" });
+  }
+  try {
+    const allTrips = await Trip.find({}).sort({ createdAt: -1 });
+    res.status(200).json(allTrips);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 const getTrips = async (req, res) => {
-  const trips = await Trip.find({}).sort({ createdAt: -1 });
+  const user_id = req.user._id;
+  const trips = await Trip.find({ user: { $ne: user_id } }).populate('user', 'email name').sort({
+    createdAt: -1,
+  });
   res.status(200).json(trips);
+};
+
+const getMyTrips = async (req, res) => {
+  try {
+    const trips = await Trip.find({ user: req.user._id })
+      .populate('user', 'email name'); // 👈 This adds user.email and user.name to each trip
+
+    res.status(200).json(trips);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
 };
 
 const getTrip = async (req, res) => {
@@ -73,8 +102,10 @@ const deleteTripCard = async (req, res) => {
 };
 
 module.exports = {
+  getAllTrips,
   getTrips,
   getTrip,
+  getMyTrips,
   createTripCard,
   updateTripCard,
   deleteTripCard,
