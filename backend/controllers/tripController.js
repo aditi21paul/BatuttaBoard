@@ -106,6 +106,7 @@ module.exports = {
   getTrips,
   getTrip,
   getMyTrips,
+  getMyTrips,
   createTripCard,
   updateTripCard,
   deleteTripCard,
