@@ -1,23 +1,42 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import Dashboard from './components/Dashboard';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useAuthContext } from "./hooks/useAuthContext";
+
+import Login from "./pages/Login";
+import SignUp from "./pages/Signup";
+import Dashboard from './pages/Dashboard';
+import Header from './components/Header';
 import PersonalDashboard from './pages/PersonalDashboard';
 
-export default function App() {
-  const currentUser = localStorage.getItem('currentUser');
+function App() {
+  const { user } = useAuthContext();
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-         <Route path="/signup" element={<SignUp />} />
-        <Route path="/dashboard" element={currentUser ? <Dashboard /> : <Navigate to="/dashboard" />} />
-        <Route path="/personal" element={currentUser ? <PersonalDashboard /> : <Navigate to="/PersonalDasboard" />} />
-      </Routes>
-    </Router>
+    <BrowserRouter>
+      <div className="app">
+        <Header user={user} />
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={user ? <Dashboard /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/trips/user/me"
+              element={user ? <PersonalDashboard /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/login"
+              element={!user ? <Login /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/signup"
+              element={!user ? <SignUp /> : <Navigate to="/" />}
+            />
+          </Routes>
+        </main>
+      </div>
+    </BrowserRouter>
   );
 }
+
+export default App;

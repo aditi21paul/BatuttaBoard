@@ -1,64 +1,51 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useLogin } from '../hooks/useLogin';
+import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { login, error, isLoading } = useLogin();
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (!email || !password) {
-      alert("Please fill in all fields");
-      return;
-    }
-
-    // Verify user credentials
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const user = users.find(
-      (u) => u.email === email && u.password === password
-    );
-
-    if (user) {
-      localStorage.setItem("currentUser", user.username);
-      navigate("/dashboard");
-    } else {
-      alert("Invalid email or password");
-    }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    await login(email, password);
   };
 
   return (
-    <div id="loginPage" className="container">
-      <header>
-        <h1>Batutta Board</h1>
-      </header>
+    <div className="container">
       <h2>Login</h2>
       <input
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        required
       />
       <input
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        required
       />
-      <button onClick={handleLogin}>Login</button>
+      <button disabled={isLoading} onClick={handleLogin}>Login</button>
       <p style={{ textAlign: "center", marginTop: "1rem" }}>
-        New here?{" "}
+        Don't have an account?{" "}
         <span
           style={{
             color: "#22577A",
             cursor: "pointer",
             textDecoration: "underline",
-            fontWeight: "bold",
           }}
           onClick={() => navigate("/signup")}
         >
-          Sign Up
+          SignUp
         </span>
       </p>
     </div>
   );
 }
+
+export default Login;

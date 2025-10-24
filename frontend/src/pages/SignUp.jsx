@@ -80,15 +80,15 @@ export default function SignUp() {
         value={formData.dob}
         onChange={handleChange}
       />
-       <select
-       name="role"
-       value={formData.role}
-       onChange={handleChange}
-       >
+      <select
+        name="role"
+        value={formData.role}
+        onChange={handleChange}
+      >
         <option value="">Select Role</option>
         <option value="User">User</option>
         <option value="Admin">Admin</option>
-        </select>
+      </select>
 
       <button onClick={handleSignUp}>Sign Up</button>
       <p style={{ textAlign: "center", marginTop: "1rem" }}>
