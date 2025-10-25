@@ -57,7 +57,8 @@ From the menu we can choose logout to logout, it redirects to the sign in page.
 
 * **Frontend:** ReactJS
 * **Styling:** CSS3
-* **State Management:** React Hooks (`useState`, `useEffect`)
+* **Backend:** MongoDB , NodeJS
+* **State Management:** React Hooks (`useState`, `useEffect`,..)
 * **Icons & UI Enhancements:** FontAwesome / React Icons
 
 ---
@@ -90,28 +91,30 @@ package.json
 
 Follow these steps to run the project locally:
 
-### 1️⃣ Clone the repository
+### 1️ Clone the repository
 
 ```bash
 git clone https://github.com/your-username/batutta-board.git
 cd batutta-board
 ```
 
-### 2️⃣ Install dependencies
+### 2️ Install dependencies in frontend and backend folder separately 
 
 ```bash
 npm install
 ```
 
-### 3️⃣ Start the development server
+### 3️ Configure the environment in backend folder by adding a process.env file
+
+### 4 Start frontend in one terminal and consequently start backend in another terminal using 
 
 ```bash
 npm start
 ```
 
-### 4️⃣ Open the app
+### 5 Open the app
 
-Visit 👉 [http://localhost:3000](http://localhost:3000) in your browser.
+Visit  [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
@@ -119,10 +122,11 @@ Visit 👉 [http://localhost:3000](http://localhost:3000) in your browser.
 
 1. **Sign up or log in** with your details.
 2. **Create a travel card** by entering source, destination, date, time, and contact.
-3. View all trips on your **Dashboard**.
-4. Use the **filter bar** to find matching trips.
-5. **Edit or delete** your cards when needed.
-6. **Log out** once done — your data stays safe.
+3. View other user all trips on your **Dashboard**.
+4. View all your trips on your **Personal Dashboard**.
+5. Use the **filter bar** to find matching trips.
+6. **Edit or delete** your cards when needed.
+7. **Log out** once done — your data stays safe.
 
 ---
 
@@ -138,12 +142,10 @@ Batutta Board brings that spirit online — a space where journeys start not wit
 
 **Aditi Paul**
 📍 Computer Science B.Tech Student at NIT Warangal 
-💻 Passionate about building creative, people-centered applications.
 ✔️ Frontend, look and feel
 
 **Nahad Bin Noushad**
 📍 Computer Science B.Tech Student at NIT Warangal 
-💻 Passionate about building creative, people-centered applications.
 ✔️ Backend and deployment
 
 ---
