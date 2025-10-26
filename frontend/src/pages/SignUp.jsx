@@ -1,96 +1,57 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useSignup } from "../hooks/useSignup";
 import { useNavigate } from "react-router-dom";
 
-export default function SignUp() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    dob: "",
-    role: "",
-  });
+const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("user");
+  const { signup, error, isLoading } = useSignup();
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSignUp = () => {
-    if (
-      !formData.username ||
-      !formData.email ||
-      !formData.password ||
-      !formData.dob ||
-      !formData.role
-    ) {
-      alert("Please fill in all fields");
-      return;
-    }
-
-    // Store user data (in a real app, this would go to a backend)
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-
-    // Check if user already exists
-    if (users.find((u) => u.email === formData.email)) {
-      alert("User already exists with this email");
-      return;
-    }
-
-    users.push(formData);
-    localStorage.setItem("users", JSON.stringify(users));
-    localStorage.setItem("currentUser", formData.username);
-
-    navigate("/dashboard");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await signup(email, password, role);
   };
 
   return (
-    <div id="signUpPage" className="container">
-      <header>
-        <h1>Batutta Board</h1>
-      </header>
+    <div className="container">
       <h2>Sign Up</h2>
       <input
-        type="text"
-        name="username"
-        placeholder="Username"
-        value={formData.username}
-        onChange={handleChange}
-      />
-      <input
         type="email"
-        name="email"
         placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
       />
       <input
         type="password"
-        name="password"
         placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
       />
-      <input
-        type="date"
-        name="dob"
-        placeholder="Date of Birth"
-        value={formData.dob}
-        onChange={handleChange}
-      />
+
+      <label style={{ display: 'block', marginTop: '10px', marginBottom: '5px' }}>
+        Role:
+      </label>
       <select
-        name="role"
-        value={formData.role}
-        onChange={handleChange}
+        value={role}
+        onChange={(e) => setRole(e.target.value)}
+        required
+        style={{ width: '100%', padding: '10px', boxSizing: 'border-box' }}
       >
-        <option value="">Select Role</option>
-        <option value="User">User</option>
+        <option value="user">User</option>
+        <option value="Student">Student</option>
         <option value="Admin">Admin</option>
       </select>
 
-      <button onClick={handleSignUp}>Sign Up</button>
+      <button disabled={isLoading} onClick={handleSubmit} style={{ marginTop: '20px' }}>
+        Sign Up
+      </button>
+
+      {error && <div className="error">{error}</div>}
+
       <p style={{ textAlign: "center", marginTop: "1rem" }}>
         Already have an account?{" "}
         <span
@@ -106,4 +67,6 @@ export default function SignUp() {
       </p>
     </div>
   );
-}
+};
+
+export default Signup;
