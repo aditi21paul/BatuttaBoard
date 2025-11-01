@@ -53,66 +53,44 @@ From the menu we can choose logout to logout, it redirects to the sign in page.
 
 ---
 
-## 🧰 Tech Stack
+##  Tech Stack
 
 * **Frontend:** ReactJS
 * **Styling:** CSS3
-* **Backend:** MongoDB , NodeJS
+* **Backend:** MongoDB , NodeJS, Express
 * **State Management:** React Hooks (`useState`, `useEffect`,..)
 * **Icons & UI Enhancements:** FontAwesome / React Icons
 
 ---
 
-## 📁 Folder Structure
+##  Getting Started
 
-```
-public/
-├── index.html
-src/
-├── components/
-│   ├── Dashboard.jsx
-│   ├── Header.jsx        
-│   ├── Modal.jsx
-│   └── TravelCard.jsx
-├── pagess/
-│   ├── Home.jsx
-│   ├── Login.jsx     
-│   ├── PersonalDashboard.jsx
-│   └── SignUp.jsx
-├── App.jsx
-├── index.js
-├── style.css
-package.json
-```
-
----
-
-## 🚀 Getting Started
+To use the website you can checkout: [https://batutta-board.vercel.app/](https://batutta-board.vercel.app)
 
 Follow these steps to run the project locally:
 
-### 1️ Clone the repository
+### 1️. Clone the repository
 
 ```bash
 git clone https://github.com/your-username/batutta-board.git
 cd batutta-board
 ```
 
-### 2️ Install dependencies in frontend and backend folder separately 
+### 2️. Install dependencies in frontend and backend folder separately 
 
 ```bash
 npm install
 ```
 
-### 3️ Configure the environment in backend folder by adding a process.env file
+### 3️. Configure the environment in backend folder by adding a process.env file
 
-### 4 Start frontend in one terminal and consequently start backend in another terminal using 
+### 4. Start frontend in one terminal and consequently start backend in another terminal using 
 
 ```bash
 npm start
 ```
 
-### 5 Open the app
+### 5. Open the app
 
 Visit  [http://localhost:3000](http://localhost:3000) in your browser.
 
@@ -141,12 +119,12 @@ Batutta Board brings that spirit online — a space where journeys start not wit
 ## 🧑‍🎨 Authors
 
 **Aditi Paul**
-📍 Computer Science B.Tech Student at NIT Warangal 
-✔️ Frontend, look and feel
+   📍 Computer Science B.Tech Student at NIT Warangal 
+   ✔️ Frontend, look and feel
 
 **Nahad Bin Noushad**
-📍 Computer Science B.Tech Student at NIT Warangal 
-✔️ Backend and deployment
+   📍 Computer Science B.Tech Student at NIT Warangal 
+   ✔️ Backend and deployment
 
 ---
 
